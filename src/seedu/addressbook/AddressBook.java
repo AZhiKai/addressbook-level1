@@ -457,7 +457,12 @@ public class AddressBook {
      */
     private static String getMessageForSuccessfulAddPerson(
             HashMap<PersonProperty, String> addedPerson) {
-        return String.format(MESSAGE_ADDED,
+        return formatMessage(addedPerson, MESSAGE_ADDED);
+    }
+
+    private static String formatMessage(HashMap<PersonProperty, String> addedPerson,
+            String messageAdded) {
+        return String.format(messageAdded,
                 getPersonInfoOfProperty(addedPerson, PersonProperty.NAME),
                 getPersonInfoOfProperty(addedPerson, PersonProperty.PHONE),
                 getPersonInfoOfProperty(addedPerson, PersonProperty.EMAIL),
@@ -510,8 +515,7 @@ public class AddressBook {
             Collection<String> keywords) {
         final List<HashMap<PersonProperty, String>> matchedPersons = new ArrayList<>();
         for (HashMap<PersonProperty, String> person : getAllPersonsInAddressBook()) {
-            final Set<String> wordsInName =
-                    new TreeSet<>(String.CASE_INSENSITIVE_ORDER); // ignore case
+            final Set<String> wordsInName = new TreeSet<>(String.CASE_INSENSITIVE_ORDER);
             wordsInName.addAll(splitByWhitespace(
                     getPersonInfoOfProperty(person, PersonProperty.NAME)));
             if (!Collections.disjoint(wordsInName, keywords)) {
@@ -714,11 +718,7 @@ public class AddressBook {
      * @return formatted message showing internal state
      */
     private static String getMessageForFormattedPersonData(HashMap<PersonProperty, String> person) {
-        return String.format(MESSAGE_DISPLAY_PERSON_DATA,
-                getPersonInfoOfProperty(person, PersonProperty.NAME),
-                getPersonInfoOfProperty(person, PersonProperty.PHONE),
-                getPersonInfoOfProperty(person, PersonProperty.EMAIL),
-                getPersonInfoOfProperty(person, PersonProperty.DATE_OF_BIRTH));
+        return formatMessage(person, MESSAGE_DISPLAY_PERSON_DATA);
     }
 
     /**
@@ -923,11 +923,7 @@ public class AddressBook {
      * @return encoded string
      */
     private static String encodePersonToString(HashMap<PersonProperty, String> person) {
-        return String.format(PERSON_STRING_REPRESENTATION,
-                getPersonInfoOfProperty(person, PersonProperty.NAME),
-                getPersonInfoOfProperty(person, PersonProperty.PHONE),
-                getPersonInfoOfProperty(person, PersonProperty.EMAIL),
-                getPersonInfoOfProperty(person, PersonProperty.DATE_OF_BIRTH));
+        return formatMessage(person, PERSON_STRING_REPRESENTATION);
     }
 
     /**
@@ -1176,9 +1172,8 @@ public class AddressBook {
      * @return whether arg is a valid person email
      */
     private static boolean isPersonEmailValid(String email) {
-        return email
-                .matches(
-                        "\\S+@\\S+\\.\\S+"); // email is [non-whitespace]@[non-whitespace].[non-whitespace]
+        return email.matches(
+                "\\S+@\\S+\\.\\S+"); // email is [non-whitespace]@[non-whitespace].[non-whitespace]
         //TODO: implement a more permissive validation
     }
 
