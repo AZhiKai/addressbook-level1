@@ -188,7 +188,7 @@ public class AddressBook {
     /*
      * NOTE : =============================================================================================
      * Note that the type of the variable below can also be declared as List<String[]>, as follows:
-     *    private static final List<String[]> ALL_PERSONS = new ArrayList<>()
+     *    private static final List<String[]> PERSONS = new ArrayList<>()
      * That is because List is an interface implemented by the ArrayList class.
      * In this code we use ArrayList instead because we wanted to to stay away from advanced concepts
      * such as interface inheritance.
@@ -198,7 +198,7 @@ public class AddressBook {
     /**
      * List of all persons in the address book.
      */
-    private static final List<HashMap<PersonProperty, String>> ALL_PERSONS = new ArrayList<>();
+    private static final List<HashMap<PersonProperty, String>> PERSONS = new ArrayList<>();
 
     /**
      * Stores the most recent list of persons shown to the user as a result of a user command. This
@@ -612,8 +612,8 @@ public class AddressBook {
      * Sort the address book in alphabetical order.
      */
     private static String executeSortAddressBook() {
-        if (ALL_PERSONS.size() > 0) {
-            ALL_PERSONS.sort(Comparator.comparing(one -> one.get(PersonProperty.NAME)));
+        if (PERSONS.size() > 0) {
+            PERSONS.sort(Comparator.comparing(one -> one.get(PersonProperty.NAME)));
         }
         return MESSAGE_ADDRESSBOOK_SORTED;
     }
@@ -836,7 +836,7 @@ public class AddressBook {
      * @param person to add
      */
     private static void addPersonToAddressBook(HashMap<PersonProperty, String> person) {
-        ALL_PERSONS.add(person);
+        PERSONS.add(person);
         savePersonsToFile(getAllPersonsInAddressBook(), storageFilePath);
     }
 
@@ -850,7 +850,7 @@ public class AddressBook {
      */
     private static boolean deletePersonFromAddressBook(
             HashMap<PersonProperty, String> exactPerson) {
-        final boolean isRemoved = ALL_PERSONS.remove(exactPerson);
+        final boolean isRemoved = PERSONS.remove(exactPerson);
         if (isRemoved) {
             savePersonsToFile(getAllPersonsInAddressBook(), storageFilePath);
         }
@@ -861,14 +861,14 @@ public class AddressBook {
      * Returns all persons in the address book
      */
     private static List<HashMap<PersonProperty, String>> getAllPersonsInAddressBook() {
-        return ALL_PERSONS;
+        return PERSONS;
     }
 
     /**
      * Clears all persons in the address book and saves changes to file.
      */
     private static void clearAddressBook() {
-        ALL_PERSONS.clear();
+        PERSONS.clear();
         savePersonsToFile(getAllPersonsInAddressBook(), storageFilePath);
     }
 
@@ -878,8 +878,8 @@ public class AddressBook {
      * @param persons list of persons to initialise the model with
      */
     private static void initialiseAddressBookModel(List<HashMap<PersonProperty, String>> persons) {
-        ALL_PERSONS.clear();
-        ALL_PERSONS.addAll(persons);
+        PERSONS.clear();
+        PERSONS.addAll(persons);
     }
 
     /*
