@@ -1,8 +1,5 @@
 @ECHO OFF
 
-REM change current directory to the location of this script
-pushd %~dp0
-
 REM create bin directory if it doesn't exist
 if not exist ..\bin mkdir ..\bin
 
@@ -10,10 +7,9 @@ REM compile the code into the bin folder
 javac  ..\src\seedu\addressbook\Addressbook.java -d ..\bin
 IF ERRORLEVEL 1 (
     echo ********** BUILD FAILURE ********** 
-    REM return to previous directory
-    popd
     exit /b 1
 )
+    echo ********** BUILD SUCCESSFUL. RUNNING TEST CASES **********
 REM no error here, errorlevel == 0
 
 REM (invalid) no parent directory, invalid filename with no extension
@@ -33,6 +29,7 @@ java -classpath ..\bin seedu.addressbook.AddressBook < input.txt >> actual.txt
 
 REM compare the output to the expected output
 FC actual.txt expected.txt
+    echo ********** TEST CASE COMPLETED **********
 
-REM return to previous directory
-popd
+REM don't close the terminal immediately
+cmd /k

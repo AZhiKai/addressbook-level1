@@ -2,8 +2,11 @@
 # invalid command
 ##########################################################
 
-  # should recognise invalid command
+  # should recognise invalid command, when something is entered
   sfdfd
+
+  # should recognise invalid command, when nothing is entered
+  ""
 
 ##########################################################
 # clean and check state
@@ -14,7 +17,7 @@
   list
 
 ##########################################################
-# test add person command, setup state for futuer tests
+# test add person command, setup state for future tests
 ##########################################################
 
   # should catch invalid args format
@@ -28,17 +31,17 @@
   add Valid Name p/12345 e/notAnEmail
 
   # should add correctly
-  add Adam Brown p/111111 e/adam@gmail.com
+  add Adam Brown p/111111 e/adam@gmail.com dob/04051996
   list
-  add Betsy Choo p/222222 e/benchoo@nus.edu.sg
+  add Betsy Choo p/222222 e/benchoo@nus.edu.sg dob/04051996
   list
 
-  # order of phone and email should not matter
-  add Charlie Dickson e/charlie.d@nus.edu.sg p/333333
+  # order of phone, email and dob should not matter
+  add Charlie Dickson e/charlie.d@nus.edu.sg p/333333 dob/04051996
   list
-  add Dickson Ee e/dickson@nus.edu.sg p/444444
+  add Dickson Ee e/dickson@nus.edu.sg dob/04051996 p/444444 
   list
-  add Esther Potato p/555555 e/esther@notreal.potato
+  add Esther Potato dob/04051996 p/555555 e/esther@notreal.potato
   list
 
 ##########################################################
@@ -105,4 +108,3 @@
 
   # exits properly
   exit
-  list

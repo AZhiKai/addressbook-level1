@@ -43,17 +43,17 @@ Help is also shown if you enter an incorrect command e.g. `abcd`
 === Adding a person: `add`
 
 Adds a person to the address book. +
-Format: `add NAME p/PHONE_NUMBER e/EMAIL`
+Format: `add NAME p/PHONE_NUMBER e/EMAIL dob/DATE_OF_BIRTH`
 
 [NOTE]
 ====
 Words in `UPPER_CASE` are the parameters. +
-Phone number and email can be in any order but the name must come first.
+Phone number, email and date of birth can be in any order but the name MUST come first.
 ====
 
 Examples:
 
-* `add John Doe p/98765432 e/johnd@gmail.com`
+* `add John Doe p/98765432 e/johnd@gmail.com dob/05041996`
 * `add Betsy Crowe e/bencrowe@gmail.com p/1234567`
 
 === Listing all persons: `list`
@@ -69,14 +69,15 @@ Format: `find KEYWORD [MORE_KEYWORDS]`
 
 [NOTE]
 ====
-The search is case sensitive, the order of the keywords does not matter, only the name is searched,
+The search is NOT case sensitive, the order of the keywords does not matter, only the name is
+searched,
 and persons matching at least one keyword will be returned (i.e. `OR` search).
 ====
 
 Examples:
 
-* `find John` +
-Returns `John Doe` but not `john`
+* `find John` or `find john` +
+Both returns `John Doe`
 
 * `find Betsy Tim John` +
 Returns any person having names `Betsy`, `Tim`, or `John`
@@ -105,6 +106,11 @@ Deletes the 1st person in the results of the `find` command.
 
 Clears all entries from the address book. +
 Format: `clear`
+
+== Sorting all entries: `sort`
+
+Sort all entries from the address book in ascending order (default). +
+Format: `sort`
 
 === Exiting the program: `exit`
 
