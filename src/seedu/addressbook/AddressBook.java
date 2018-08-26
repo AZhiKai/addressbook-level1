@@ -360,7 +360,7 @@ public class AddressBook {
      * Initialises the in-memory data using the storage file. Assumption: The file exists.
      */
     private static void loadDataFromStorage() {
-        initialiseAddressBookModel(loadPersonsFromFile(storageFilePath));
+        populateAddressBook(loadPersonsFromFile(storageFilePath));
     }
 
 
@@ -877,7 +877,7 @@ public class AddressBook {
      *
      * @param persons list of persons to initialise the model with
      */
-    private static void initialiseAddressBookModel(List<HashMap<PersonProperty, String>> persons) {
+    private static void populateAddressBook(List<HashMap<PersonProperty, String>> persons) {
         PERSONS.clear();
         PERSONS.addAll(persons);
     }
