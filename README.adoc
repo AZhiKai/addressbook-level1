@@ -1,5 +1,8 @@
+image:https://travis-ci.org/AZhiKai/addressbook-level1.svg?branch=master[Build Status]
+
 = AddressBook (Level 1)
 ifdef::env-github,env-browser[:relfileprefix: docs/]
+
 
 * This is a CLI (Command Line Interface) Address Book application *written in procedural fashion*.
 * It is a Java sample application intended for students learning Software Engineering while using Java as
